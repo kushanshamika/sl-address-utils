@@ -1,0 +1,32 @@
+{
+  "name": "sl-address-utils",
+  "version": "1.0.0",
+  "description": "Sri Lanka administrative divisions and postal code utilities",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "data"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "sri-lanka",
+    "address",
+    "postal-code",
+    "geography",
+    "utils"
+  ],
+  "author": "Kushan Shamika",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^25.0.10",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  }
+}
