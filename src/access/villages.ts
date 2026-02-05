@@ -4,6 +4,9 @@ import {
   DatasetIndexes,
   AddressPath,
 } from "../types/models";
+import { dsByDistrictId } from "../indexes/buildIndexes";
+import { gnByDivisionalSecretariatId } from "../indexes/buildIndexes";
+import { villagesByGramaNiladhariId } from "../indexes/buildIndexes";
 
 /* ============================================================
    Village Accessors
@@ -49,6 +52,30 @@ export function getVillagesByGN(
   indexes: DatasetIndexes
 ): Village[] {
   return indexes.villagesByGN.get(gnId) ?? [];
+}
+
+/**
+ * Get all villages under a given district
+ */
+export function getVillagesByDistrict(districtId: string): Village[] {
+  const dsIds = dsByDistrictId.get(districtId);
+  if (!dsIds) return [];
+
+  const result: Village[] = [];
+
+  for (const dsId of dsIds) {
+    const gnIds = gnByDivisionalSecretariatId.get(dsId);
+    if (!gnIds) continue;
+
+    for (const gnId of gnIds) {
+      const villagesForGN = villagesByGramaNiladhariId.get(gnId);
+      if (villagesForGN) {
+        result.push(...villagesForGN);
+      }
+    }
+  }
+
+  return result;
 }
 
 /**

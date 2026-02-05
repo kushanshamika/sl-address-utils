@@ -52,8 +52,8 @@ export interface Village extends BaseEntity {
 
 export interface PostalCode {
   code: string;
-  districtId?: string;
-  name?: string;
+  districtId: string;
+  name: string;
 }
 
 /* =======================

@@ -72,6 +72,7 @@ export {
   getVillageById,
   getVillagesByName,
   getVillagesByGN,
+  getVillagesByDistrict,
   getVillagePath,
   assertVillageExists,
 } from "./access/villages";
